@@ -3,7 +3,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "fastapi-celery-startup"
+name = "fastapi-celery-start"
 version = "0.0.1"
 description = "FastAPI Playground"
 authors = ["Krishnasis Mandal <krishnasis@hotmail.com>"]
