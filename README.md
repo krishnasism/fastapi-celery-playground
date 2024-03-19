@@ -51,6 +51,7 @@ Things to do:
 - [x] Linting
 - [ ] Kubernetes
 - [ ] Terraform
+- [ ] Observability
 - [ ] Type Checking
 
 ## References:
