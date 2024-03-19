@@ -49,6 +49,7 @@ Things to do:
 - [x] Celery
 - [x] Docker
 - [x] Linting
+- [ ] Tests
 - [ ] Kubernetes
 - [ ] Terraform
 - [ ] Observability
