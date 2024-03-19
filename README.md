@@ -1,5 +1,5 @@
 # fastapi-celery-start
-Simple boilerplate fastapi + celery template to get started.
+Simple boilerplate fastapi + celery playground to get started.
 
 I created this while trying to learn it myself and keep it as a reference for future use.
 
