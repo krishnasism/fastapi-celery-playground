@@ -1,0 +1,58 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "fastapi-celery-startup"
+version = "0.0.1"
+description = "FastAPI Playground"
+authors = ["Krishnasis Mandal <krishnasis@hotmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.110.0"
+uvicorn = "^0.28.1"
+python-multipart = "^0.0.9"
+celery = "^5.3.6"
+redis = "^5.0.3"
+
+[tool.poetry.dev-dependencies]
+ruff = "^0.3.3"
+
+[tool.ruff]
+indent-width = 4
+line-length = 120
+select = [
+    # pycodestyle
+    "E", "W",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # MaccaBe
+    "C901",
+    # Pep8-naming
+    #"N", # TODO: enable
+]
+fix = true
+fixable = ["ALL"]
+exclude = ["docs"]
+preview = true
+# Ignore FastAPI Depends()
+extend-ignore = ["B008"]
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+[tool.pytest.ini_options]
+log_cli=true
+log_level="NOTSET"
+asyncio_mode="auto"

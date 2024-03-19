@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  redis:
+    container_name: redis
+    image: redis:6.2-alpine
+
+  fastapi:
+    build: ./api/
+    ports:
+      - "8000:8000"
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
+    depends_on:
+      - redis
+
+  celery_worker:
+    container_name: celery_worker
+    build: ./celery_app/
+    volumes:
+      - .:/app
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
+    depends_on:
+      - fastapi
+      - redis
+
+  flower:
+    container_name: flower
+    image: mher/flower
+    ports:
+      - 5556:5555
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+      - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
+    depends_on:
+      - fastapi
+      - redis
+      - celery_worker
