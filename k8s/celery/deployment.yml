@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-deployment
+  namespace: development
+  labels:
+    app: fastapi-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: celery
+      app: fastapi-app
+  template:
+    metadata:
+      name: celery
+      labels:
+        type: celery
+        app: fastapi-app
+    spec:
+      containers:
+        - name: celery
+          image: 10.5.0.2:5000/fastapi-celery-playground-fastapi:latest
+          imagePullPolicy: Always
+          env:
+            - name: CELERY_BROKER_URL
+              value: "$(CELERY_BROKER_URL)"
+            - name: CELERY_BACKEND_URL
+              value: "$(CELERY_BACKEND_URL)"

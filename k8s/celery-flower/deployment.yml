@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-flower
+  namespace: development
+  labels:
+    app: fastapi-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: celery-flower
+      app: fastapi-app
+  template:
+    metadata:
+      name: celery-flower
+      labels:
+        type: celery-flower
+        app: fastapi-app
+    spec:
+      containers:
+        - name: celery-flower
+          image: mher/flower
+          env:
+            - name: CELERY_BROKER_URL
+              value: "$(CELERY_BROKER_URL)"
+            - name: CELERY_BACKEND_URL
+              value: "$(CELERY_BACKEND_URL)"
+          ports:
+            - containerPort: 5555
