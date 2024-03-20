@@ -1,4 +1,4 @@
-# fastapi-celery-start
+# fastapi-celery-playground
 Simple boilerplate fastapi + celery playground to get started.
 
 I created this while trying to learn it myself and keep it as a reference for future use.
@@ -6,8 +6,8 @@ I created this while trying to learn it myself and keep it as a reference for fu
 ## Getting Started
 Firstly clone the repo
 ```bash
-git clone https://github.com/krishnasism/fastapi-celery-start.git
-cd fastapi-celery-start
+git clone https://github.com/krishnasism/fastapi-celery-playground.git
+cd fastapi-celery-playground
 ```
 
 ### Setup environment variables
