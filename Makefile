@@ -1,7 +1,7 @@
 LOCAL_DOCKER_REGISTRY_PORT = 5000
 FASTAPI_DOCKER_IMAGE_NAME = fastapi-celery-playground-fastapi:latest
 CELERY_DOCKER_IMAGE_NAME = fastapi-celery-playground-celery_worker:latest
-LOCAL_DOCKER_REGISTRY_HOST = 10.5.0.2
+LOCAL_DOCKER_REGISTRY_HOST = localhost
 
 build_all_images:
 	docker compose build
@@ -16,28 +16,33 @@ push_images_to_local_docker_registry:
 	docker push $(LOCAL_DOCKER_REGISTRY_HOST):$(LOCAL_DOCKER_REGISTRY_PORT)/$(CELERY_DOCKER_IMAGE_NAME)
 
 create_infra:
-	kubectl create -f k8s/namespace.yml --save-config
-	kubectl create -f k8s/api/ --save-config
-	kubectl create -f k8s/celery/ --save-config
-	kubectl create -f k8s/celery-flower/ --save-config
-	kubectl create -f k8s/redis/ --save-config
+	kubectl create -f k8s/local/namespace.yml --save-config
+	kubectl create -f k8s/local/api/ --save-config
+	kubectl create -f k8s/local/celery/ --save-config
+	kubectl create -f k8s/local/celery-flower/ --save-config
+	kubectl create -f k8s/local/redis/ --save-config
 
 apply_infra:
-	kubectl apply -f k8s/namespace.yml
-	kubectl apply -f k8s/api/
-	kubectl apply -f k8s/celery/
-	kubectl apply -f k8s/celery-flower/
-	kubectl apply -f k8s/redis/
+	kubectl apply -f k8s/local/namespace.yml
+	kubectl apply -f k8s/local/api/
+	kubectl apply -f k8s/local/celery/
+	kubectl apply -f k8s/local/celery-flower/
+	kubectl apply -f k8s/local/redis/
 
 start_services_minikube:
-	minikube service fastapi-app start
-	minikube service celery-flower start
-	minikube service redis start
+	minikube service fastapi-app start -n local
+	minikube service celery-flower start -n local
+	minikube service redis start -n local
 
-delete_all:
-	kubectl delete -f k8s/namespace.yml
-	kubectl delete -f k8s/api/
-	kubectl delete -f k8s/celery/
-	kubectl delete -f k8s/celery-flower/
-	kubectl delete -f k8s/redis/
-	kubectl delete -f k8s/namespace.yml
+apply_busybox:
+	kubectl apply -f k8s/busybox.yml
+
+purge_infra:
+	kubectl delete -f k8s/local/namespace.yml
+	kubectl delete -f k8s/local/api/
+	kubectl delete -f k8s/local/celery/
+	kubectl delete -f k8s/local/celery-flower/
+	kubectl delete -f k8s/local/redis/
+
+purge_busybox:
+	kubectl delete -f k8s/busybox.yml

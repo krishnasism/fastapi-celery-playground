@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fastapi-app
-  namespace: development
+  namespace: local
   labels:
     type: fastapi-app-service
     app: fastapi-app
