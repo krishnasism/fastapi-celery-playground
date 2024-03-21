@@ -22,7 +22,7 @@ docker compose up --build
 
 Note: I added `--without-mingle` to celery, you can drop it. This was to mitigate a bug mentioned in this [issue](https://github.com/celery/celery/discussions/7276).
 
-### Run services Kubernetes
+### Run services (k8s)
 
 For now, I have tested it only with local k8s cluster with [minikube](https://minikube.sigs.k8s.io/docs/start/). It's pretty nifty!
 
