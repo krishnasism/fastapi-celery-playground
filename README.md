@@ -24,11 +24,11 @@ Note: I added `--without-mingle` to celery, you can drop it. This was to mitigat
 
 ### Run services (k8s)
 
-For now, I have tested it only with local k8s cluster with [minikube](https://minikube.sigs.k8s.io/docs/start/). It's pretty nifty!
+For now, I have tested it only with a local k8s cluster with [minikube](https://minikube.sigs.k8s.io/docs/start/). It's pretty nifty!
 
 Another tool that I found very handy is [k9s](https://k9scli.io/)
 
-The commands to deploy in the local cluster are all present in the Makefile. Simply follow them one by one to have your own local k8s cluster running the application.
+The commands to deploy in the local cluster are all present in the Makefile. Simply follow them one by one to have your local k8s cluster running the application.
 
 But I believe that you are connected to the correct `k8s` cluster through kubectl, it will be deployed directly!
 
@@ -40,7 +40,7 @@ make <command>
 - Do a GET request to `http://localhost:8000/api/v1/process/` to trigger the example task.
 - Navigate to `http://localhost:5556/` to view the Flower Dashboard.
 
-#### Note: In case of Kuberenetes you will get a different port, but it will work the same
+#### Note: In the case of Kubernetes you will get a different port, but it will work the same
 ## Local Development
 To install the dependencies locally, use poetry
 ```bash
@@ -60,13 +60,14 @@ pre-commit install
 
 I am using this as a playground to play around with FastAPI, Celery, and some other concepts. This is not meant to be a production project, but a simple playground to experiment and learn, but can serve as a good starting point.
 
-Things to do:
+Things to do (at least the basics):
 
 - [x] FastAPI
 - [x] Celery
 - [x] Docker
 - [x] Linting
 - [x] Kubernetes
+- [ ] Helm
 - [ ] Tests
 - [ ] Terraform
 - [ ] Observability
