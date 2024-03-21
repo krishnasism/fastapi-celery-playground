@@ -4,12 +4,12 @@ metadata:
   name: redis
   namespace: local
   labels:
-    type: redis-service
-    app: fastapi-app
+    type: redis
+    app: redis
 spec:
   ports:
     - port: 6379
       targetPort: 6379
   selector:
     type: redis
-    app: fastapi-app
+    app: redis

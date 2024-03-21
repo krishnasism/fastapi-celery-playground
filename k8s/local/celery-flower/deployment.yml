@@ -4,27 +4,27 @@ metadata:
   name: celery-flower
   namespace: local
   labels:
-    app: fastapi-app
+    app: celery-flower
 spec:
   replicas: 1
   selector:
     matchLabels:
       type: celery-flower
-      app: fastapi-app
+      app: celery-flower
   template:
     metadata:
       name: celery-flower
       labels:
         type: celery-flower
-        app: fastapi-app
+        app: celery-flower
     spec:
       containers:
         - name: celery-flower
           image: mher/flower
           env:
             - name: CELERY_BROKER_URL
-              value: "$(CELERY_BROKER_URL)"
+              value: redis://redis:6379/0
             - name: CELERY_BACKEND_URL
-              value: "$(CELERY_BACKEND_URL)"
+              value: redis://redis:6379/0
           ports:
             - containerPort: 5555

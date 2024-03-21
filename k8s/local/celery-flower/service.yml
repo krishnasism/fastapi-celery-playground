@@ -4,8 +4,8 @@ metadata:
   name: celery-flower
   namespace: local
   labels:
-    type: celery-flower-service
-    app: fastapi-app
+    type: celery-flower
+    app: celery-flower
 spec:
   type: NodePort
   ports:
@@ -13,4 +13,4 @@ spec:
       targetPort: 5555
   selector:
     type: celery-flower
-    app: fastapi-app
+    app: celery-flower

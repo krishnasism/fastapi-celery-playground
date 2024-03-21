@@ -161,3 +161,4 @@ cython_debug/
 
 .dev.env
 .prod.env
+secrets.yml

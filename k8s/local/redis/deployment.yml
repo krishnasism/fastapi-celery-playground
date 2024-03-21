@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-deployment
+  name: redis
   namespace: local
   labels:
-    app: fastapi-app
+    app: redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      type: redis-pod
-      app: fastapi-app
+      type: redis
+      app: redis
   template:
     metadata:
-      name: redis-pod
+      name: redis
       labels:
-        type: redis-pod
-        app: fastapi-app
+        type: redis
+        app: redis
     spec:
       containers:
         - name: redis

@@ -19,15 +19,15 @@ spec:
         app: fastapi-app
     spec:
       containers:
-        - name: fastapi-app-demo
-          image: 10.5.0.2:5000/fastapi-celery-playground-fastapi:latest
+        - name: fastapi-app
+          image: krishnasismandal/fastapi-celery-playground-fastapi:latest
           imagePullPolicy: Always
           env:
             - name: CELERY_BROKER_URL
-              value: "$(CELERY_BROKER_URL)"
+              value: redis://redis:6379/0
             - name: CELERY_BACKEND_URL
-              value: "$(CELERY_BACKEND_URL)"
+              value: redis://redis:6379/0
           ports:
-            - containerPort: 80
+            - containerPort: 8000
 
 

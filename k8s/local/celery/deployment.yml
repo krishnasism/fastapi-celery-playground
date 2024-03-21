@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: celery-deployment
+  name: celery
   namespace: local
   labels:
-    app: fastapi-app
+    app: celery-flower
 spec:
   replicas: 1
   selector:
     matchLabels:
       type: celery
-      app: fastapi-app
+      app: celery-flower
   template:
     metadata:
       name: celery
       labels:
         type: celery
-        app: fastapi-app
+        app: celery-flower
     spec:
       containers:
         - name: celery
-          image: 10.5.0.2:5000/fastapi-celery-playground-fastapi:latest
+          image: krishnasismandal/fastapi-celery-playground-celery_worker:latest
           imagePullPolicy: Always
           env:
             - name: CELERY_BROKER_URL
-              value: "$(CELERY_BROKER_URL)"
+              value: redis://redis:6379/0
             - name: CELERY_BACKEND_URL
-              value: "$(CELERY_BACKEND_URL)"
+              value: redis://redis:6379/0
