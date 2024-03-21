@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-app
+  namespace: local
+  labels:
+    app: fastapi-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: api
+      app: fastapi-app
+  template:
+    metadata:
+      name: fastapi-app
+      labels:
+        type: api
+        app: fastapi-app
+    spec:
+      containers:
+        - name: fastapi-app
+          image: krishnasismandal/fastapi-celery-playground-fastapi:latest
+          imagePullPolicy: Always
+          env:
+            - name: CELERY_BROKER_URL
+              value: redis://redis:6379/0
+            - name: CELERY_BACKEND_URL
+              value: redis://redis:6379/0
+          ports:
+            - containerPort: 8000
+
+
