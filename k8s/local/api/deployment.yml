@@ -9,13 +9,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      type: api
+      type: fastapi-app
       app: fastapi-app
   template:
     metadata:
       name: fastapi-app
       labels:
-        type: api
+        type: fastapi-app
         app: fastapi-app
     spec:
       containers:

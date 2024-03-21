@@ -32,6 +32,7 @@ The commands to deploy in the local cluster are all present in the Makefile. Sim
 
 But I believe that you are connected to the correct `k8s` cluster through kubectl, it will be deployed directly!
 
+
 ```bash
 make <command>
 ```
@@ -41,6 +42,13 @@ make <command>
 - Navigate to `http://localhost:5556/` to view the Flower Dashboard.
 
 #### Note: In the case of Kubernetes you will get a different port, but it will work the same
+
+If you want to run `ingress` and view the app in the specified url, for example - `fastapiapp.info` mentioned in ingress file, don't forget to update your `/etc/hosts` file to contain the following line
+
+```
+127.0.0.1 fastapiapp.info
+```
+
 ## Local Development
 To install the dependencies locally, use poetry
 ```bash
