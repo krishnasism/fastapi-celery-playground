@@ -6,6 +6,7 @@ prepare_local:
 	minikube start
 	minikube addons enable ingress
 	minikube addons enable ingress-dns
+	minikube tunnel
 
 # Build all docker images
 build_all_images:
@@ -28,6 +29,8 @@ apply_infra:
 	kubectl apply -f k8s/$(ENVIRONMENT)/celery/
 	kubectl apply -f k8s/$(ENVIRONMENT)/celery-flower/
 	kubectl apply -f k8s/$(ENVIRONMENT)/api/
+
+# Run the services after deployments have been created and are running
 
 # Start services (do it in order)
 start_redis:
