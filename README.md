@@ -30,12 +30,16 @@ Another tool that I found very handy is [k9s](https://k9scli.io/)
 
 The commands to deploy in the local cluster are all present in the Makefile. Simply follow them one by one to have your local k8s cluster running the application.
 
-But I believe that you are connected to the correct `k8s` cluster through kubectl, it will be deployed directly!
+But I believe that if you are connected to the correct `k8s` cluster through kubectl, it will be deployed directly!
 
 
 ```bash
 make <command>
 ```
+
+Note: In case you want to pull your docker image from your own registry, please change the values in the api/ and celery/ `deployment.yml` files from `krishnasismandal/fastapi-celery-playground-fastapi:latest` to your own `<docker-registry>/<image-name>:<tag>`
+
+Also don't forget to change the `push_images_to_docker_registry` command in the Makefile to point to your registry.
 
 ### Use it
 - Do a GET request to `http://localhost:8000/api/v1/process/` to trigger the example task.
