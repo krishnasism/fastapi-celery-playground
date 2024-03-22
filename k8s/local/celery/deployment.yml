@@ -4,19 +4,19 @@ metadata:
   name: celery
   namespace: local
   labels:
-    app: celery-flower
+    app: celery
 spec:
   replicas: 1
   selector:
     matchLabels:
       type: celery
-      app: celery-flower
+      app: celery
   template:
     metadata:
       name: celery
       labels:
         type: celery
-        app: celery-flower
+        app: celery
     spec:
       containers:
         - name: celery
