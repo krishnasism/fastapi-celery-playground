@@ -4,13 +4,12 @@ metadata:
   name: fastapi-app
   namespace: local
   labels:
-    type: fastapi-app
     app: fastapi-app
 spec:
   type: NodePort
   ports:
-    - port: 8000
+    - name: http
+      port: 8000
       targetPort: 8000
   selector:
-    type: fastapi-app
     app: fastapi-app

@@ -9,13 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      type: redis
       app: redis
   template:
     metadata:
       name: redis
       labels:
-        type: redis
         app: redis
     spec:
       containers:

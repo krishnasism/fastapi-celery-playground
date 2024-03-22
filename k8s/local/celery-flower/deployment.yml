@@ -9,13 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      type: celery-flower
       app: celery-flower
   template:
     metadata:
       name: celery-flower
       labels:
-        type: celery-flower
         app: celery-flower
     spec:
       containers:

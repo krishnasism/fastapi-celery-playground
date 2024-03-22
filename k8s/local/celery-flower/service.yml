@@ -4,13 +4,12 @@ metadata:
   name: celery-flower
   namespace: local
   labels:
-    type: celery-flower
     app: celery-flower
 spec:
   type: NodePort
   ports:
-    - port: 5555
+    - name: http
+      port: 5555
       targetPort: 5555
   selector:
-    type: celery-flower
     app: celery-flower

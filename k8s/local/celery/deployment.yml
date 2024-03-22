@@ -9,13 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      type: celery
       app: celery
   template:
     metadata:
       name: celery
       labels:
-        type: celery
         app: celery
     spec:
       containers:
