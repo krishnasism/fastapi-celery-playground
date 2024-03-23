@@ -24,7 +24,7 @@ push_images_to_docker_registry:
 # Apply infra files
 apply_infra:
 	kubectl apply -f k8s/$(ENVIRONMENT)/namespace.yml
-	kubectl apply -f k8s/$(ENVIRONMENT)/secrets/secrets.yml
+	kubectl apply -f k8s/$(ENVIRONMENT)/configs/
 	kubectl apply -f k8s/$(ENVIRONMENT)/redis/
 	kubectl apply -f k8s/$(ENVIRONMENT)/celery/
 	kubectl apply -f k8s/$(ENVIRONMENT)/celery-flower/
@@ -44,10 +44,6 @@ start_celery_flower:
 
 apply_ingress:
 	kubectl apply -f k8s/$(ENVIRONMENT)/ingress.yml
-
-# Required for ingress url to work
-tunnel:
-	minikube tunnel
 
 # In case you want to poke around your cluster
 apply_busybox:

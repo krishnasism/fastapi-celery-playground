@@ -20,8 +20,6 @@ spec:
         - name: celery
           image: krishnasismandal/fastapi-celery-playground-celery_worker:latest
           imagePullPolicy: Always
-          env:
-            - name: CELERY_BROKER_URL
-              value: redis://redis:6379/0
-            - name: CELERY_BACKEND_URL
-              value: redis://redis:6379/0
+          envFrom:
+          - configMapRef:
+              name: redis-settings

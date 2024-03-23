@@ -20,11 +20,9 @@ spec:
         - name: fastapi-app
           image: krishnasismandal/fastapi-celery-playground-fastapi:latest
           imagePullPolicy: Always
-          env:
-            - name: CELERY_BROKER_URL
-              value: redis://redis:6379/0
-            - name: CELERY_BACKEND_URL
-              value: redis://redis:6379/0
+          envFrom:
+          - configMapRef:
+              name: redis-settings
           ports:
             - containerPort: 8000
 
