@@ -79,6 +79,7 @@ Things to do (at least the basics):
 - [x] Docker
 - [x] Linting
 - [x] Kubernetes
+- [ ] SSL Support
 - [ ] Helm
 - [ ] Tests
 - [ ] Terraform
