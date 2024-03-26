@@ -89,3 +89,4 @@ Things to do (at least the basics):
 ## References:
 - CeleryDocs: https://docs.celeryq.dev/
 - FastAPI Docs: https://fastapi.tiangolo.com/
+- Kubernetes Docs: https://kubernetes.io/docs/home/
