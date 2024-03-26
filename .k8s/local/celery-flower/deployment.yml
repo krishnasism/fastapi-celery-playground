@@ -24,3 +24,7 @@ spec:
               name: redis-settings
           ports:
             - containerPort: 5555
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"

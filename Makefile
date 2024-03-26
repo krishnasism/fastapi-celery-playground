@@ -23,12 +23,12 @@ push_images_to_docker_registry:
 
 # Apply infra files
 apply_infra:
-	kubectl apply -f k8s/$(ENVIRONMENT)/namespace.yml
-	kubectl apply -f k8s/$(ENVIRONMENT)/configs/
-	kubectl apply -f k8s/$(ENVIRONMENT)/redis/
-	kubectl apply -f k8s/$(ENVIRONMENT)/celery/
-	kubectl apply -f k8s/$(ENVIRONMENT)/celery-flower/
-	kubectl apply -f k8s/$(ENVIRONMENT)/api/
+	kubectl apply -f .k8s/$(ENVIRONMENT)/namespace.yml
+	kubectl apply -f .k8s/$(ENVIRONMENT)/configs/
+	kubectl apply -f .k8s/$(ENVIRONMENT)/redis/
+	kubectl apply -f .k8s/$(ENVIRONMENT)/celery/
+	kubectl apply -f .k8s/$(ENVIRONMENT)/celery-flower/
+	kubectl apply -f .k8s/$(ENVIRONMENT)/api/
 
 # Run the services after deployments have been created and are running
 
@@ -43,18 +43,18 @@ start_celery_flower:
 	minikube service celery-flower start -n $(ENVIRONMENT)
 
 apply_ingress:
-	kubectl apply -f k8s/$(ENVIRONMENT)/ingress.yml
+	kubectl apply -f .k8s/$(ENVIRONMENT)/ingress.yml
 
 # In case you want to poke around your cluster
 apply_busybox:
-	kubectl apply -f k8s/busybox.yml
+	kubectl apply -f .k8s/busybox.yml
 
 # Drop infra
 purge_infra:
-	kubectl delete -f k8s/$(ENVIRONMENT)/namespace.yml
+	kubectl delete -f .k8s/$(ENVIRONMENT)/namespace.yml
 
 purge_ingress:
-	kubectl delete -f k8s/$(ENVIRONMENT)/ingress.yml
+	kubectl delete -f .k8s/$(ENVIRONMENT)/ingress.yml
 
 purge_busybox:
-	kubectl delete -f k8s/busybox.yml
+	kubectl delete -f .k8s/busybox.yml
