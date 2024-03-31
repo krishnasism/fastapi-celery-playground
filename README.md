@@ -68,6 +68,21 @@ We also have a couple of pre-commit hooks
 pre-commit install
 ```
 
+## Development environment
+To run the app on K8s locally, you will need to also set up the following:
+1. Local K8s cluster (e.g: Minikube)
+1. Helm (v3)
+
+Before `kubectl apply` or `helm install` don't forget to run `make prepare_local` to prepare local K8s cluster.
+
+To install using k8s follow the `Makefile`. 
+
+### If you want to use helm:
+```
+cd .helm
+helm install fastapi-celery-pg-1 .\fastapi-celery-playground\
+```
+
 ## Purpose
 
 I am using this as a playground to play around with FastAPI, Celery, and some other concepts. This is not meant to be a production project, but a simple playground to experiment and learn, but can serve as a good starting point.
@@ -79,8 +94,8 @@ Things to do (at least the basics):
 - [x] Docker
 - [x] Linting
 - [x] Kubernetes
+- [x] Helm
 - [ ] SSL Support
-- [ ] Helm
 - [ ] Tests
 - [ ] Terraform
 - [ ] Observability

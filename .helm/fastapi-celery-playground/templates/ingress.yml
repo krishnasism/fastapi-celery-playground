@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  rules:
+    - host: fastapiapp.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: fastapi-app-{{ .Release.Name }}
+                port:
+                  number: 8000
+    - host: flower.fastapiapp.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: celery-flower-{{ .Release.Name }}
+                port:
+                  number: 5555

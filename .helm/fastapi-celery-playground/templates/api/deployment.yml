@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-app-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: fastapi-app-{{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount.api }}
+  selector:
+    matchLabels:
+      app: fastapi-app-{{ .Release.Name }}
+  template:
+    metadata:
+      name: fastapi-app-{{ .Release.Name }}
+      labels:
+        app: fastapi-app-{{ .Release.Name }}
+    spec:
+      containers:
+        - name: fastapi-app-{{ .Release.Name }}
+          image: {{ .Values.images.api.repository}}:{{ .Values.images.api.tag }}
+          imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: redis-settings-{{ .Release.Name }}
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "400m"
+
+

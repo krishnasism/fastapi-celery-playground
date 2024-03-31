@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: redis-{{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount.redis }}
+  selector:
+    matchLabels:
+      app: redis-{{ .Release.Name }}
+  template:
+    metadata:
+      name: redis-{{ .Release.Name }}
+      labels:
+        app: redis-{{ .Release.Name }}
+    spec:
+      containers:
+        - name: redis-{{ .Release.Name }}
+          image: {{ .Values.images.redis.repository}}
+          ports:
+            - containerPort: 6379
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"

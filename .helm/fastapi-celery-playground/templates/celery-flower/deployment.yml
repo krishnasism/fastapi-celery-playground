@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-flower-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: celery-flower-{{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount.celeryFlower }}
+  selector:
+    matchLabels:
+      app: celery-flower-{{ .Release.Name }}
+  template:
+    metadata:
+      name: celery-flower-{{ .Release.Name }}
+      labels:
+        app: celery-flower-{{ .Release.Name }}
+    spec:
+      containers:
+        - name: celery-flower-{{ .Release.Name }}
+          image: {{ .Values.images.celeryFlower.repository}}
+          envFrom:
+          - configMapRef:
+              name: redis-settings-{{ .Release.Name }}
+          ports:
+            - containerPort: 5555
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"

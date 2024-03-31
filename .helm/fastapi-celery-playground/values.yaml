@@ -1,0 +1,17 @@
+namespace: local
+replicaCount:
+  api: 1
+  celery: 1
+  celeryFlower: 1
+  redis: 1
+images:
+  api:
+    repository: krishnasismandal/fastapi-celery-playground-fastapi
+    tag: latest
+  celery:
+    repository: krishnasismandal/fastapi-celery-playground-celery_worker
+    tag: latest
+  celeryFlower:
+    repository: mher/flower
+  redis:
+    repository: redis

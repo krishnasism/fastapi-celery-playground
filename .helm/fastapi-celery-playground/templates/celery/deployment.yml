@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: celery-{{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount.celery }}
+  selector:
+    matchLabels:
+      app: celery-{{ .Release.Name }}
+  template:
+    metadata:
+      name: celery-{{ .Release.Name }}
+      labels:
+        app: celery-{{ .Release.Name }}
+    spec:
+      containers:
+        - name: celery-{{ .Release.Name }}
+          image: {{ .Values.images.celery.repository}}:{{ .Values.images.celery.tag }}
+          imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: redis-settings-{{ .Release.Name }}
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "200m"

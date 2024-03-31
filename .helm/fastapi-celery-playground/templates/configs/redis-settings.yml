@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-settings-{{ .Release.Name }}
+  namespace: {{ .Values.namespace }}
+data :
+  CELERY_BROKER_URL: redis://redis-{{ .Release.Name }}:6379/0
+  CELERY_BACKEND_URL: redis://redis-{{ .Release.Name }}:6379/0
