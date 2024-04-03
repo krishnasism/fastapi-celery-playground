@@ -99,6 +99,7 @@ Things to do (at least the basics):
 - [ ] Tests
 - [ ] Terraform
 - [ ] Observability
+- [ ] Logging
 - [ ] Type Checking
 
 ## References:
